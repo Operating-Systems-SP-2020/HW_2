@@ -1,0 +1,23 @@
+//====================================================
+//		Operating Systems HW #2
+//====================================================
+
+//====================================================
+1)
+Processes: 6
+Threads: 8
+//====================================================
+
+//====================================================
+2) 
+a) When the number of kernel threads is less than the number of processors, then some of the processors would remain idle since the scheduler maps only kernel threads to processors and not user-level threads to processors.
+
+b) When the number of kernel threads is exactly equal to the number of processors, then it is possible that all of the processors might be utilized simultaneously. However, when a kernel thread blocks inside the kernel (due to a page fault or while invoking system calls), the corresponding processor would remain idle.
+//====================================================
+
+//====================================================
+3)
+
+
+
+//====================================================
