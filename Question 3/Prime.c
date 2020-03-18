@@ -3,8 +3,6 @@
 #include <stdio.h>
 #include <math.h>
 
-#define LIMIT   200
-
 int isprime(unsigned n) {
    unsigned s, i;
   
