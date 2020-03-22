@@ -1,5 +1,8 @@
 //need to implement threads (idk I'm lost, so I just created a functioning C prgm for a base)
-
+/*============================================================================
+   Description : Takes user-input integer to find and output all prime numbers
+                  up to user input. 
+  ============================================================================ */
 #include <stdio.h>
 #include <math.h>
 
