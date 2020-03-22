@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <math.h>
 
-int isprime(unsigned n) {
+int isPrime(unsigned n) {
    unsigned s, i;
   
    // Check for special cases.
@@ -27,6 +27,17 @@ int isprime(unsigned n) {
    return 1;
 }
 
+// Check all numbers if n is prime.
+void printPrimeThreadCalculation(void* threadId) {
+
+  for(n=0; n < max; n++) { 
+      if (isprime(n)) {
+          printf("%-4d", n);
+      }
+  }
+}
+
+//Receive user input and move to create threads.
 int main(void) {
   unsigned n;
   int max;
@@ -35,13 +46,31 @@ int main(void) {
   printf("Enter the number up to which you wish to check: ");
   scanf ("%d", max);
   
-  // Check all numbers if n is prime.
-  printf("Prime numbers are:\n");
-  for(n=0; n < max; n++) { 
-      if (isprime(n)) {
-          printf("%-4d", n);
-      }
-  }
+  printf("\nThe prime numbers are:\n");
+   
+  /* Thread Prime Checker */
+  primeCheckerThread(max);
+  /* Exits the threads */
+  pthread_exit(NULL);
+  
   printf("\n");
   return 0;
+}
+
+//Create threads.
+void primeCheckerThread(int numOfThreads) {
+
+    pthread_t threads[numOfThreads];
+    int rc;
+    long t;
+    for (t = 0; t < numOfThreads; t++) {
+        /* Creates threads */
+        rc = pthread_create(&threads[t], NULL, printPrimeThreadCalculation, (void *)t);
+        if (rc) {
+            printf("ERROR; return code from pthread_create() is %d\n", rc);
+            exit(-1);
+        }  pthread_join(threads[t],NULL);
+
+    }
+
 }
